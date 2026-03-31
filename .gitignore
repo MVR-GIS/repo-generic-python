@@ -144,6 +144,9 @@ ENV/
 env.bak/
 venv.bak/
 
+# Conda environment stored inside the project directory
+.conda/
+
 # Spyder project settings
 .spyderproject
 .spyproject
@@ -187,6 +190,8 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file. However, if you prefer, 
 #  you could uncomment the following to ignore the entire vscode folder
 # .vscode/
+# Workspace-specific VS Code state files (keep extensions.json and settings.json)
+.vscode/*.code-workspace
 
 # Ruff stuff:
 .ruff_cache/
