@@ -1,0 +1,14 @@
+{
+  "python.condaPath": "conda",
+  "jupyter.notebookFileRoot": "${workspaceFolder}",
+  "editor.formatOnSave": true,
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true
+  },
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/*.pyc": true,
+    "**/.ipynb_checkpoints": true
+  }
+}
