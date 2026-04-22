@@ -31,7 +31,7 @@ git --version
 
 ### 1.2 Install Miniforge + mamba
 
-Conda is the tool used to manage Python and all project dependencies. Miniconda is a minimal installer for conda.
+Conda is the tool used to manage Python and all project dependencies. **Miniforge** is a minimal, conda-forge–oriented installer that supports per-user installs on Windows.
 
 1. Download the **Miniforge** installer for your operating system from:  
    <https://github.com/conda-forge/miniforge/releases>
@@ -64,9 +64,8 @@ You must be a member of the GitHub Organization to access this repository.
 
 3. Clone the repository:
    ```bash
-   git clone https://github.com/<your-org>/repo-generic-python.git
+   git clone https://github.com/MVR-GIS/repo-generic-python.git
    ```
-   Replace `<your-org>` with the actual GitHub Organization name.
 
 4. Move into the project directory:
    ```bash
@@ -152,7 +151,7 @@ Each time you begin working on the project:
 
 2. **Check if the environment needs updating** (if `environment.yml` changed):
    ```bash
-   conda env update -f environment.yml --prune
+   mamba env update -f environment.yml --prune
    ```
    The `--prune` flag removes packages that were removed from `environment.yml`.
 
@@ -225,7 +224,7 @@ conda deactivate
 
 ```bash
 conda deactivate
-conda env remove -n project-env
+conda env remove -n activate
 conda env create -f environment.yml
 ```
 
