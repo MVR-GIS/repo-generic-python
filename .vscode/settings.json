@@ -1,5 +1,4 @@
 {
-  "python.condaPath": "conda",
   "jupyter.notebookFileRoot": "${workspaceFolder}",
   "editor.formatOnSave": true,
   "[python]": {
