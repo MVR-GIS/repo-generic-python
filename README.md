@@ -1,251 +1,181 @@
 # repo-generic-python
 
-A template repository for data science Python analysis projects. Follow the setup instructions below to get your local environment ready for work.
+A template repository for lightweight Python data science analysis projects.
+
+This template is designed for:
+- Windows (USACE GFE)
+- VS Code
+- Miniforge (conda-forge) + mamba
+- one environment per repository, defined by `environment.yml`
+- notebooks as a first-class analysis workflow
 
 ---
 
 ## Table of Contents
 
-1. [Prerequisites](#1-prerequisites)
-2. [Clone the Repository](#2-clone-the-repository)
-3. [Create the Conda Environment](#3-create-the-conda-environment)
-4. [Open the Project in VS Code](#4-open-the-project-in-vs-code)
-5. [Configure VS Code to Use the Environment](#5-configure-vs-code-to-use-the-environment)
-6. [Daily Workflow](#6-daily-workflow)
-7. [Project Structure](#7-project-structure)
-8. [Managing the Environment](#8-managing-the-environment)
+1. Prerequisites
+2. Create a new repository from this template
+3. Clone your new repository
+4. Create the conda environment
+5. Open the project in VS Code
+6. Configure VS Code to use the environment
+7. Daily workflow
+8. Project structure
+9. Managing the environment
 
 ---
 
 ## 1. Prerequisites
 
-### 1.1 Install Git
+### 1.1 Git
+Verify Git is installed:
 
-If Git is not already installed, download and install it from <https://git-scm.com/downloads>. Accept all defaults during installation.
+    git --version
 
-Verify the installation by opening a terminal (Command Prompt, PowerShell, or macOS/Linux Terminal) and running:
+If Git is not installed, install it using your organization’s approved method.
 
-```bash
-git --version
-```
+### 1.2 Miniforge + mamba
+Conda manages Python and project dependencies. Miniforge is a minimal, conda-forge–oriented installer that supports per-user installs on Windows.
 
-### 1.2 Install Miniforge + mamba
+1. Download the Miniforge installer:
+   https://github.com/conda-forge/miniforge/releases
 
-Conda is the tool used to manage Python and all project dependencies. **Miniforge** is a minimal, conda-forge–oriented installer that supports per-user installs on Windows.
+2. Run the installer (Windows: `.exe`).
 
-1. Download the **Miniforge** installer for your operating system from:  
-   <https://github.com/conda-forge/miniforge/releases>
+3. Close and reopen your terminal, then verify:
 
-2. Run the installer and follow the prompts:
-   - **Windows**: Run the `.exe` installer. 
+    conda --version
+    mamba --version
 
-3. Close and reopen your terminal, then verify the installation:
-   ```bash
-   mamba --version
-   ```
+If `mamba` is not available, install it into `base`:
 
-### 1.3 Install Visual Studio Code
+    conda install -n base mamba -c conda-forge
+    mamba --version
 
-1. Download VS Code from <https://code.visualstudio.com/>.
-2. Run the installer and accept all defaults.
+### 1.3 Visual Studio Code
+Install VS Code using your organization’s approved method.
+
+Recommended extensions:
+- Python (Microsoft)
+- Jupyter (Microsoft)
 
 ---
 
 ## 2. Create a new repository from this template
 
 1. In GitHub, open this template repository: `MVR-GIS/repo-generic-python`.
-
 2. Click **Use this template**.
-
 3. Create your new repository:
-   - **Owner**: `MVR-GIS` (or your approved org/user location)
-   - **Repository name**: choose a descriptive name (example: `my-analysis-project`)
-   - **Visibility**: choose per project needs (public or private)
-
+   - Owner: `MVR-GIS` (or your approved org/user location)
+   - Repository name: choose a descriptive name (example: `my-analysis-project`)
+   - Visibility: choose per project needs (public or private)
 4. After GitHub creates your new repository, copy its clone URL (HTTPS).
 
 ---
 
-## 3. Clone the Repository
+## 3. Clone your new repository
 
-1. Open a terminal (or **Miniforge Prompt** on Windows if conda is not on your system PATH).
+1. Open a terminal (or Miniforge Prompt on Windows if conda is not on your system PATH).
+2. Navigate to where you store projects:
 
-2. Navigate to the folder where you want to store the project:
-   ```bash
-   cd ~/Documents   # or any preferred location
-   ```
+    cd ~/Documents
 
-3. Clone the repository:
-   ```bash
-   git clone https://github.com/MVR-GIS/,YOUR-NEW-REPO>.git
-   ```
+3. Clone your new repository (replace with your repo name):
+
+    git clone https://github.com/MVR-GIS/<YOUR-NEW-REPO>.git
 
 4. Move into the project directory:
-   ```bash
-   cd <YOUR-NEW-REPO>
-   ```
+
+    cd <YOUR-NEW-REPO>
 
 ---
 
-## 4. Create the Conda Environment
+## 4. Create the conda environment
 
-The `environment.yml` file at the root of the project defines the shared Python environment (packages and their versions). Everyone on the team uses this same file to create an identical, reproducible environment.
+The `environment.yml` file defines the project environment. This template standardizes the environment name as `analysis`.
 
-### 3.1 Create the environment
+### 4.1 Create the environment
 
-Run the following command from inside the `repo-generic-python` directory:
+From the repo root:
 
-```bash
-mamba env create -f environment.yml
-```
+    mamba env create -f environment.yml
 
-This command reads `environment.yml`, downloads the required packages, and creates a mamba environment named **`analysis`**.
+### 4.2 Activate the environment
 
-> **Note:** This step only needs to be performed once per machine. Creating the environment may take several minutes depending on your internet connection.
+    conda activate analysis
 
-### 3.2 Activate the environment
+Verify Python runs:
 
-```bash
-conda activate analysis
-```
-
-Your terminal prompt will update to show `(analysis)` at the beginning, confirming the environment is active.
+    python --version
 
 ---
 
-## 5. Open the Project in VS Code
+## 5. Open the project in VS Code
 
-From your terminal (with the conda environment activated), open VS Code in the project directory:
+From the repo root:
 
-```bash
-code .
-```
-
-VS Code will open with the `repo-generic-python` folder as your workspace.
-
-### 5.1 Install Recommended Extensions
-
-VS Code will display a notification asking if you want to install the **recommended extensions** for this workspace. Click **"Install All"**.
-
-If the prompt does not appear automatically, open the Extensions panel (`Ctrl+Shift+X` / `Cmd+Shift+X`), click the **filter icon (⋯)**, and select **"Show Recommended Extensions"**, then install all of them.
-
-The recommended extensions include:
-
-| Extension | Purpose |
-|---|---|
-| Python | Core Python language support |
-| Jupyter | Run and edit Jupyter notebooks in VS Code |
+    code .
 
 ---
 
-## 6. Configure VS Code to Use the Environment
+## 6. Configure VS Code to use the environment
 
-VS Code needs to know which Python interpreter to use.
-
-1. Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`).
-2. Type **"Python: Select Interpreter"** and press `Enter`.
-3. From the list, choose the interpreter that shows **`analysis`** — it will look like:
-   ```
-   Python 3.11.x ('analysis': conda)
-   ```
-
-After selecting the interpreter, all Python files and Jupyter notebooks in the workspace will use the `analysis` conda environment automatically.
+1. Open the Command Palette (Ctrl+Shift+P).
+2. Run: Python: Select Interpreter
+3. Choose the interpreter for the `analysis` conda environment.
 
 ---
 
-## 7. Daily Workflow
+## 7. Daily workflow
 
-Each time you begin working on the project:
+1. Pull the latest changes:
 
-1. **Pull the latest changes** from the remote repository:
-   ```bash
-   git pull
-   ```
+    git pull
 
-2. **Check if the environment needs updating** (if `environment.yml` changed):
-   ```bash
-   mamba env update -f environment.yml --prune
-   ```
-   The `--prune` flag removes packages that were removed from `environment.yml`.
+2. Activate the environment:
 
-3. **Activate the environment** (if not already active in your terminal):
-   ```bash
-   conda activate analysis
-   ```
+    conda activate analysis
 
-4. **Open VS Code**:
-   ```bash
-   code .
-   ```
+3. Open VS Code:
 
-5. Work on your analysis in the `notebooks/` directory or add reusable code to `src/`.
+    code .
 
-6. **Commit and push your work**:
-   ```bash
-   git add .
-   git commit -m "Your descriptive commit message"
-   git push
-   ```
+If `environment.yml` changed, update your environment:
+
+    mamba env update -f environment.yml --prune
 
 ---
 
-## 8. Project Structure
+## 8. Project structure
 
-```
-repo-generic-python/
-├── .vscode/
-│   ├── extensions.json   # Recommended VS Code extensions
-│   └── settings.json     # Workspace Python/Jupyter settings
-├── data/                 # Raw and processed data files (not committed by default)
-├── notebooks/            # Jupyter notebooks for analysis
-├── outputs/              # Charts, tables, and other outputs
-├── src/                  # Reusable Python modules and helper functions
-│   └── __init__.py
-├── .gitignore            # Files and folders excluded from git
-├── environment.yml       # Conda environment specification
-├── LICENSE
-└── README.md
-```
-
-> **`data/` and `outputs/`** directories are included in the repo structure but their contents are excluded from git by default. Add large or sensitive files to `.gitignore` as needed.
+- `notebooks/` — Jupyter notebooks (analysis + narrative)
+- `src/` — reusable Python code (helpers, functions, modules)
+- `data/` — data (follow your project’s data policy)
+- `outputs/` — figures/tables/results produced by analysis
 
 ---
 
-## 9. Managing the Environment
+## 9. Managing the environment
 
 ### Add a new package
-
 1. Add the package to `environment.yml` under `dependencies`.
 2. Update your local environment:
-   ```bash
-   conda env update -f environment.yml --prune
-   ```
-3. Commit the updated `environment.yml` so teammates can sync:
-   ```bash
-   git add environment.yml
-   git commit -m "Add <package-name> to project environment"
-   git push
-   ```
+
+    mamba env update -f environment.yml --prune
+
+3. Commit the updated `environment.yml`.
 
 ### Deactivate the environment
 
-```bash
-conda deactivate
-```
+    conda deactivate
 
 ### Remove and recreate the environment (if needed)
 
-```bash
-conda deactivate
-conda env remove -n analysis
-conda env create -f environment.yml
-conda activate analysis
-```
+    conda deactivate
+    conda env remove -n analysis
+    mamba env create -f environment.yml
+    conda activate analysis
 
-### Export an exact environment snapshot
+### Export an exact environment snapshot (optional)
 
-To capture the exact versions of every installed package (useful for archiving a finished project):
-
-```bash
-conda env export > environment-lock.yml
-```
+    conda env export > environment-lock.yml
