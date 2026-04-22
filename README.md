@@ -29,26 +29,19 @@ Verify the installation by opening a terminal (Command Prompt, PowerShell, or ma
 git --version
 ```
 
-### 1.2 Install Miniconda
+### 1.2 Install Miniforge + mamba
 
 Conda is the tool used to manage Python and all project dependencies. Miniconda is a minimal installer for conda.
 
-1. Download the **Miniconda** installer for your operating system from:  
-   <https://docs.conda.io/en/latest/miniconda.html>
+1. Download the **Miniforge** installer for your operating system from:  
+   <https://github.com/conda-forge/miniforge/releases>
 
 2. Run the installer and follow the prompts:
-   - **Windows**: Run the `.exe` installer. When asked, select **"Add Miniconda to my PATH"** (or use the Anaconda Prompt that the installer creates).
-   - **macOS / Linux**: Run the shell script installer:
-     ```bash
-     bash Miniconda3-latest-MacOSX-x86_64.sh   # macOS Intel
-     bash Miniconda3-latest-MacOSX-arm64.sh    # macOS Apple Silicon
-     bash Miniconda3-latest-Linux-x86_64.sh    # Linux
-     ```
-     Follow the prompts and answer `yes` to initialize conda in your shell.
+   - **Windows**: Run the `.exe` installer. 
 
 3. Close and reopen your terminal, then verify the installation:
    ```bash
-   conda --version
+   mamba --version
    ```
 
 ### 1.3 Install Visual Studio Code
@@ -62,7 +55,7 @@ Conda is the tool used to manage Python and all project dependencies. Miniconda 
 
 You must be a member of the GitHub Organization to access this repository.
 
-1. Open a terminal (or **Anaconda Prompt** on Windows if conda is not on your system PATH).
+1. Open a terminal (or **Miniforge Prompt** on Windows if conda is not on your system PATH).
 
 2. Navigate to the folder where you want to store the project:
    ```bash
@@ -91,20 +84,20 @@ The `environment.yml` file at the root of the project defines the shared Python 
 Run the following command from inside the `repo-generic-python` directory:
 
 ```bash
-conda env create -f environment.yml
+mamba env create -f environment.yml
 ```
 
-This command reads `environment.yml`, downloads the required packages, and creates a conda environment named **`project-env`**.
+This command reads `environment.yml`, downloads the required packages, and creates a mamba environment named **`analysis`**.
 
 > **Note:** This step only needs to be performed once per machine. Creating the environment may take several minutes depending on your internet connection.
 
 ### 3.2 Activate the environment
 
 ```bash
-conda activate project-env
+conda activate analysis
 ```
 
-Your terminal prompt will update to show `(project-env)` at the beginning, confirming the environment is active.
+Your terminal prompt will update to show `(analysis)` at the beginning, confirming the environment is active.
 
 ---
 
@@ -129,15 +122,7 @@ The recommended extensions include:
 | Extension | Purpose |
 |---|---|
 | Python | Core Python language support |
-| Pylance | Fast, feature-rich Python IntelliSense |
 | Jupyter | Run and edit Jupyter notebooks in VS Code |
-| Jupyter Renderers | Rich output rendering for notebooks |
-| Git Graph | Visual git history and branching |
-| GitLens | Enhanced git annotations and history |
-| Live Share | Real-time collaborative editing |
-| autoDocstring | Auto-generate Python docstrings |
-| Black Formatter | Automatic Python code formatting |
-| Ruff | Fast Python linting |
 
 ---
 
@@ -147,12 +132,12 @@ VS Code needs to know which Python interpreter to use.
 
 1. Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`).
 2. Type **"Python: Select Interpreter"** and press `Enter`.
-3. From the list, choose the interpreter that shows **`project-env`** — it will look like:
+3. From the list, choose the interpreter that shows **`analysis`** — it will look like:
    ```
-   Python 3.11.x ('project-env': conda)
+   Python 3.11.x ('analysis': conda)
    ```
 
-After selecting the interpreter, all Python files and Jupyter notebooks in the workspace will use the `project-env` conda environment automatically.
+After selecting the interpreter, all Python files and Jupyter notebooks in the workspace will use the `analysis` conda environment automatically.
 
 ---
 
@@ -173,7 +158,7 @@ Each time you begin working on the project:
 
 3. **Activate the environment** (if not already active in your terminal):
    ```bash
-   conda activate project-env
+   conda activate analysis
    ```
 
 4. **Open VS Code**:
