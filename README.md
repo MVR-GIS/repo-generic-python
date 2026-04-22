@@ -51,7 +51,22 @@ Conda is the tool used to manage Python and all project dependencies. **Miniforg
 
 ---
 
-## 2. Clone the Repository
+## 2. Create a new repository from this template
+
+1. In GitHub, open this template repository: `MVR-GIS/repo-generic-python`.
+
+2. Click **Use this template**.
+
+3. Create your new repository:
+   - **Owner**: `MVR-GIS` (or your approved org/user location)
+   - **Repository name**: choose a descriptive name (example: `my-analysis-project`)
+   - **Visibility**: choose per project needs (public or private)
+
+4. After GitHub creates your new repository, copy its clone URL (HTTPS).
+
+---
+
+## 3. Clone the Repository
 
 1. Open a terminal (or **Miniforge Prompt** on Windows if conda is not on your system PATH).
 
@@ -62,17 +77,17 @@ Conda is the tool used to manage Python and all project dependencies. **Miniforg
 
 3. Clone the repository:
    ```bash
-   git clone https://github.com/MVR-GIS/repo-generic-python.git
+   git clone https://github.com/MVR-GIS/,YOUR-NEW-REPO>.git
    ```
 
 4. Move into the project directory:
    ```bash
-   cd repo-generic-python
+   cd <YOUR-NEW-REPO>
    ```
 
 ---
 
-## 3. Create the Conda Environment
+## 4. Create the Conda Environment
 
 The `environment.yml` file at the root of the project defines the shared Python environment (packages and their versions). Everyone on the team uses this same file to create an identical, reproducible environment.
 
@@ -98,7 +113,7 @@ Your terminal prompt will update to show `(analysis)` at the beginning, confirmi
 
 ---
 
-## 4. Open the Project in VS Code
+## 5. Open the Project in VS Code
 
 From your terminal (with the conda environment activated), open VS Code in the project directory:
 
@@ -108,7 +123,7 @@ code .
 
 VS Code will open with the `repo-generic-python` folder as your workspace.
 
-### 4.1 Install Recommended Extensions
+### 5.1 Install Recommended Extensions
 
 VS Code will display a notification asking if you want to install the **recommended extensions** for this workspace. Click **"Install All"**.
 
@@ -123,7 +138,7 @@ The recommended extensions include:
 
 ---
 
-## 5. Configure VS Code to Use the Environment
+## 6. Configure VS Code to Use the Environment
 
 VS Code needs to know which Python interpreter to use.
 
@@ -138,7 +153,7 @@ After selecting the interpreter, all Python files and Jupyter notebooks in the w
 
 ---
 
-## 6. Daily Workflow
+## 7. Daily Workflow
 
 Each time you begin working on the project:
 
@@ -174,7 +189,7 @@ Each time you begin working on the project:
 
 ---
 
-## 7. Project Structure
+## 8. Project Structure
 
 ```
 repo-generic-python/
@@ -196,7 +211,7 @@ repo-generic-python/
 
 ---
 
-## 8. Managing the Environment
+## 9. Managing the Environment
 
 ### Add a new package
 
