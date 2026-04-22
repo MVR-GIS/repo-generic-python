@@ -53,8 +53,6 @@ Conda is the tool used to manage Python and all project dependencies. **Miniforg
 
 ## 2. Clone the Repository
 
-You must be a member of the GitHub Organization to access this repository.
-
 1. Open a terminal (or **Miniforge Prompt** on Windows if conda is not on your system PATH).
 
 2. Navigate to the folder where you want to store the project:
@@ -224,8 +222,9 @@ conda deactivate
 
 ```bash
 conda deactivate
-conda env remove -n activate
+conda env remove -n analysis
 conda env create -f environment.yml
+conda activate analysis
 ```
 
 ### Export an exact environment snapshot

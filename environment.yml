@@ -1,7 +1,6 @@
 name: analysis
 channels:
   - conda-forge
-  - defaults
 dependencies:
   # Pinning to a minor version lets conda resolve the latest stable patch.
   # To lock an exact snapshot of all package versions (e.g., for archiving),
