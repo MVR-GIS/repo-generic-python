@@ -179,3 +179,118 @@ If `environment.yml` changed, update your environment:
 ### Export an exact environment snapshot (optional)
 
     conda env export > environment-lock.yml
+
+---
+
+## 10. Threads chat session logging (Foundry) — reproducible session history
+
+This template supports a reproducible “save often” workflow for capturing **Foundry Threads**
+chat session history into this repository. The intent is to preserve a transparent audit trail
+of AI assistance and support continuity across sessions.
+
+**Design goals:**
+
+- minimal user friction (sensible defaults)
+- “save often” updates (rerun throughout the day)
+- committed, reviewable artifacts in git
+- raw export preserved for audit / re-derivation
+- backups created automatically on overwrite
+
+### 10.1 What you commit vs what is ignored
+
+Committed artifacts (in git):
+
+- `dev/sessions/YYYY-MM-DD[_topic].md`
+  - human-readable transcript
+  - includes YAML front matter (metadata) at the top of the file
+- `dev/sessions/.raw/YYYY-MM-DD[_topic].threads_export.json`
+  - raw Foundry export preserved for audit and re-derivation
+
+Ignored artifacts (not committed):
+
+- `dev/sessions/.backups/`
+  - timestamped backups created automatically when updating an existing transcript
+  - this folder is gitignored to prevent repo bloat
+
+### 10.2 Export from Foundry Threads
+
+In Foundry Threads, use the UI option to export/save the chat as JSON.
+
+Save the export to your OS Downloads folder with the filename:
+
+- `threads_export.json`
+
+(This tool assumes that name by default.)
+
+### 10.3 Extract (or update) the session transcript
+
+From the repository root (the folder containing `environment.yml`), with the `analysis`
+environment activated:
+
+    conda activate analysis
+
+Run the extractor (default behavior: reads `~/Downloads/threads_export.json`):
+
+    python -m tools.foundry_threads
+
+**Save often workflow (recommended):**
+
+- export again from Foundry Threads to `threads_export.json`
+- rerun the command above
+- the tool will overwrite the existing session transcript and create a backup copy
+
+### 10.4 Optional: topic suffix (multi-topic days)
+
+By default, the session transcript file is date-only:
+
+- `dev/sessions/YYYY-MM-DD.md`
+
+If you have multiple distinct sessions/topics in the same day, use `--topic`:
+
+    python -m tools.foundry_threads --topic data_validation
+
+This produces:
+
+- `dev/sessions/YYYY-MM-DD_data_validation.md`
+- `dev/sessions/.raw/YYYY-MM-DD_data_validation.threads_export.json`
+
+Topic values are sanitized for filenames (special characters converted to underscores).
+
+### 10.5 Optional: override export path (advanced)
+
+If the export JSON is not in your Downloads folder, provide an explicit path:
+
+    python -m tools.foundry_threads --export-path C:\path\to\threads_export.json
+
+### 10.6 What metadata is captured
+
+The transcript `.md` includes YAML front matter with extracted metadata such as:
+
+- title
+- created_at / last_updated_at
+- foundry_user_id
+- user_display_name (from SENT messages)
+- model_display_name (from RECEIVED messages)
+- export_sha256 (integrity hash of the raw export JSON)
+- message counts
+
+### 10.7 Testing
+
+This repository uses `pytest`. From the repo root:
+
+    conda activate analysis
+    pytest
+
+A runbook is available at:
+
+- `dev/RUNBOOK_TESTS.md`
+
+Notes:
+
+- `pytest.ini` is included to ensure tests can import repository-local modules consistently.
+- Tests validate:
+  - transcript generation (YAML front matter + conversation rendering)
+  - raw export preservation under `dev/sessions/.raw/`
+  - overwrite backups under `dev/sessions/.backups/`
+
+---
